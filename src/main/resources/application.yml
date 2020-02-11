@@ -1,0 +1,5 @@
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  file:
+#    path: C:/sell.log
