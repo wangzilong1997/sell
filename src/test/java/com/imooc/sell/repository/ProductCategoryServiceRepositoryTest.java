@@ -23,7 +23,7 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class ProductCategoryRepositoryTest {
+public class ProductCategoryServiceRepositoryTest {
 
     @Autowired
     private ProductCategoryRepository repository;
