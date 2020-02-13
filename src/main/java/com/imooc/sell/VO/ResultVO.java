@@ -1,10 +1,13 @@
 package com.imooc.sell.VO;
 
+import lombok.Data;
+
 /**
  * http请求返回的最外层对象
  * @author wangzilong
  * @date 2020/2/13 11:15
  */
+@Data
 public class ResultVO<T> {
 
     /**提示码*/
