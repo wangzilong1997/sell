@@ -1,26 +1,20 @@
-package com.imooc.sell.dataobject;
+package com.imooc.sell.dto;
 
+import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.enums.OrderStatusEnum;
 import com.imooc.sell.enums.PayStatusEnum;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 /**
  * @author wangzilong
- * @date 2020/2/13 17:29
+ * @date 2020/2/14 18:59
  */
-@Entity
-@DynamicUpdate
-public class OrderMaster {
+public class OrderDTO {
     /** 订单*/
-    @Id
     private String orderId;
 
     /** 买家名字*/
@@ -39,10 +33,10 @@ public class OrderMaster {
     private BigDecimal orderAmount;
 
     /** 订单状态，默认为新下单*/
-    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+    private Integer orderStatus;
 
     /** 支付状态，默认为未支付*/
-    private Integer payStatus = PayStatusEnum.WAIT.getCode();
+    private Integer payStatus;
 
     /** 创建时间*/
     private Date createTime;
@@ -50,9 +44,9 @@ public class OrderMaster {
     /** 更新时间*/
     private Date updateTime;
 
-   /* *//** *//*
-    @Transient
-    private List<OrderDetail> orderDetailList;*/
+
+
+    private List<OrderDetail> orderDetailList;
 
 
     public String getOrderId() {
@@ -135,11 +129,11 @@ public class OrderMaster {
         this.updateTime = updateTime;
     }
 
-    /*public List<OrderDetail> getOrderDetailList() {
+    public List<OrderDetail> getOrderDetailList() {
         return orderDetailList;
-    }*/
+    }
 
-    /*public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
         this.orderDetailList = orderDetailList;
-    }*/
+    }
 }
