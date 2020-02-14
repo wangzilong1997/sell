@@ -3,6 +3,7 @@ package com.imooc.sell.service.impl;
 import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.dataobject.OrderMaster;
 import com.imooc.sell.dataobject.ProductInfo;
+import com.imooc.sell.dto.CartDTO;
 import com.imooc.sell.dto.OrderDTO;
 import com.imooc.sell.enums.ResultEnum;
 import com.imooc.sell.exception.SellException;
@@ -16,9 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author wangzilong
@@ -37,10 +41,12 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
 
     @Override
+    @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
 
         String orderId = KeyUtil.genUniqueKey();
         BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
+        List<CartDTO> cartDTOList = new ArrayList<>();
 
         //1 查询商品价格
         for (OrderDetail orderDetail : orderDTO.getOrderDetailList()){
@@ -63,6 +69,10 @@ public class OrderServiceImpl implements OrderService {
 
             orderDetailRepository.save(orderDetail);
 
+            CartDTO cartDTO = new CartDTO(orderDetail.getProductId(),orderDetail.getProductQuantity());
+            cartDTOList.add(cartDTO);
+
+
         }
 
 
@@ -74,10 +84,13 @@ public class OrderServiceImpl implements OrderService {
         orderMaster.setOrderAmount(orderAmount);
         BeanUtils.copyProperties(orderDTO,orderMaster);
         orderMasterRepository.save(orderMaster);
+
         //4 下单成功扣库存
 
 
-        return null;
+        productService.decreaseStock(cartDTOList);
+
+        return orderDTO;
     }
 
     @Override
