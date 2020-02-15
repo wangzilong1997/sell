@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -30,6 +32,8 @@ public class OrderServiceImplTest {
     private OrderServiceImpl orderService;
 
     private final String buyerOpenid = "110110";
+
+    private final String orderId = "1581692035956220625";
 
     @Test
     public void create() {
@@ -64,10 +68,20 @@ public class OrderServiceImplTest {
 
     @Test
     public void findOne() {
+        OrderDTO result = orderService.findOne(orderId);
+
+        Assert.assertEquals(orderId,result.getOrderId());
     }
 
     @Test
     public void findList() {
+        PageRequest request = new PageRequest(0,2);
+
+        Page<OrderDTO> orderDTOPage =
+        orderService.findList(buyerOpenid,request);
+
+
+        Assert.assertNotEquals(0,orderDTOPage.getTotalElements());
     }
 
     @Test
