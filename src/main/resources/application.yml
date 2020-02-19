@@ -16,3 +16,4 @@ spring:
 server:
   servlet:
     context-path: /sell
+  port: 8090
