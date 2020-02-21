@@ -1,9 +1,12 @@
 package com.imooc.sell.enums;
 
+import lombok.Getter;
+
 /**
  * @author wangzilong
  * @date 2020/2/13 20:04
  */
+@Getter
 public enum PayStatusEnum implements CodeEnum{
     WAIT(0,"等待支付"),
     SUCCESS(1,"支付成功")

@@ -8,6 +8,7 @@ import com.imooc.sell.enums.OrderStatusEnum;
 import com.imooc.sell.enums.PayStatusEnum;
 import com.imooc.sell.utils.EnumUtil;
 import com.imooc.sell.utils.zerializer.Data2LongSerializer;
+import lombok.Data;
 
 import javax.persistence.Id;
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 //属性为null的不返回
 //@JsonInclude(JsonInclude.Include.NON_NULL)
+@Data
 public class OrderDTO {
     /** 订单*/
     private String orderId;
@@ -60,7 +62,8 @@ public class OrderDTO {
 
     @JsonIgnore
     public OrderStatusEnum getOrderStatusEnum(){
-        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
+        /*return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);*/
+        return OrderStatusEnum.getOrderStatusEnum(orderStatus);
     };
     @JsonIgnore
     public PayStatusEnum getPayStatusEnum(){

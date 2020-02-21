@@ -20,8 +20,17 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
+
 server:
   servlet:
     context-path: /sell
-  port: 8090
+  port: 443
+  ssl:
+    key-store: 1.pfx
+    key-store-password: RnRi10q0
+
+
+
+
+
 

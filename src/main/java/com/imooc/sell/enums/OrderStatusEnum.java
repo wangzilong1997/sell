@@ -26,12 +26,12 @@ public enum OrderStatusEnum implements CodeEnum{
         this.code = code;
         this.message = message;
     }
-   /* public static OrderStatusEnum getOrderStatusEnum(Integer code){
+    public static OrderStatusEnum getOrderStatusEnum(Integer code){
         for (OrderStatusEnum orderStatusEnum:OrderStatusEnum.values()){
             if (orderStatusEnum.getCode().equals(code)){
                 return orderStatusEnum;
             }
         }
         return null;
-    }*/
+    }
 }
