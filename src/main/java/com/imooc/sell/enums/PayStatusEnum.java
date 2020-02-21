@@ -4,7 +4,7 @@ package com.imooc.sell.enums;
  * @author wangzilong
  * @date 2020/2/13 20:04
  */
-public enum PayStatusEnum {
+public enum PayStatusEnum implements CodeEnum{
     WAIT(0,"等待支付"),
     SUCCESS(1,"支付成功")
     ;
