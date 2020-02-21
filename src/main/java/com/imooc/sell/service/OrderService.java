@@ -3,6 +3,7 @@ package com.imooc.sell.service;
 import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.dataobject.OrderMaster;
 import com.imooc.sell.dto.OrderDTO;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -28,6 +29,9 @@ public interface OrderService {
 
     /** 支付订单*/
     OrderDTO paid(OrderDTO orderDTO);
+
+    /**  查询订单列表**/
+    Page<OrderDTO> findList(Pageable pageable);
 
 
 }
