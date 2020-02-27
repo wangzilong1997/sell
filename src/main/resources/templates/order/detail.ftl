@@ -49,6 +49,9 @@
                             <th>
                                 总额
                             </th>
+                            <th>
+                                总价
+                            </th>
                         </tr>
                         </thead>
                         <tbody>

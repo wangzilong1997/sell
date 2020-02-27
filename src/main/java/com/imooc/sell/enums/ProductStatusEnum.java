@@ -5,7 +5,7 @@ package com.imooc.sell.enums;
  * @author wangzilong
  * @date 2020/2/12 19:41
  */
-public enum ProductStatusEnum {
+public enum ProductStatusEnum implements CodeEnum{
     UP(0,"在架"),
     DOWN(1,"下架")
     ;
@@ -17,8 +17,12 @@ public enum ProductStatusEnum {
     public Integer getCode() {
         return code;
     }
-    ProductStatusEnum(Integer code,String message){
+
+
+
+    ProductStatusEnum(Integer code, String message){
         this.code = code;
+        this.message = message;
     }
 
 }
