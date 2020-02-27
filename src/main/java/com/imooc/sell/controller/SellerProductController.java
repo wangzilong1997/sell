@@ -45,4 +45,42 @@ public class SellerProductController {
         map.put("size",size);
         return new ModelAndView("product/list",map);
     }
+
+
+    /**
+     * 上架
+     * @param productId
+     * @param map
+     * @return
+     */
+    @GetMapping("/on_sale")
+    public ModelAndView onSale(@RequestParam("productId") String productId,
+                               Map<String,Object> map
+                               ){
+        try {
+            productService.onSale(productId);
+        } catch (SecurityException e){
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("common/error");
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("common/success",map);
+    }
+
+
+    @GetMapping("/off_sale")
+    public ModelAndView offSale(@RequestParam("productId") String productId,
+                               Map<String,Object> map
+                                ){
+        try {
+            productService.offSale(productId);
+        } catch (SecurityException e){
+            map.put("msg",e.getMessage());
+            map.put("url","/sell/seller/product/list");
+            return new ModelAndView("common/error");
+        }
+        map.put("url","/sell/seller/product/list");
+        return new ModelAndView("common/success",map);
+    }
 }
