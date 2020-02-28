@@ -37,7 +37,7 @@
                                     <td>${productInfo.createTime}</td>
                                     <td>${productInfo.updateTime}</td>
                                     <td>
-                                        <a href="/sell/seller/order/detail?orderId=${productInfo.productId}">编辑</a>
+                                        <a href="/sell/seller/product/index?productId=${productInfo.productId}">编辑</a>
                                     </td>
                                     <td>
                                         <#if productInfo.getProductStatusEnum().message == "在架">
